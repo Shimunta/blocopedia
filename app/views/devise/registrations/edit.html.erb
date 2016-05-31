@@ -31,12 +31,19 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
-<h3>Upgrade to Premium?</h3>
+<% if current_user.standard? %>
+  <h3>Upgrade to Premium?</h3>
 
-<p> Begin making private Wiki's</p>
+  <p> Begin making private Wiki's</p>
 
-<%= link_to "Upgrade my account", new_charge_path, class: "btn btn-success" %> </p>
+  <%= link_to "Upgrade my account", new_charge_path, class: "btn btn-success" %> </p>
+<% else %>
+  <h3>Downgrade Account?</h3>
 
+  <p>Your Private Wiki's will be made public</p>
+
+  <%= link_to "Downgrade Account", downgrade_account_path(:customer), method: :get, data: { confirm: 'This will make private wikis public. Do you wish to proceed?' }, class: 'btn btn-warning' %>
+<% end %>
 
 <h3>Cancel my account</h3>
 

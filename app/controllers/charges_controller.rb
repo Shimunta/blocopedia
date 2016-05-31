@@ -28,4 +28,15 @@ class ChargesController < ApplicationController
       flash[:alert] = e.message
       redirect_to new_charge_path
   end
+
+  def downgrade_account
+    current_user.standard!
+
+    current_user.wikis.update_all(private: false)
+
+    flash[:notice] = "Fine...no money back though..."
+    redirect_to root_path
+  end
 end
+
+# current_user.wikis.update_all(private: false)
