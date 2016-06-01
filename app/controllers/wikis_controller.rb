@@ -25,13 +25,12 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = find_id
-    authorize @wiki
   end
 
   def update
     @wiki = find_id
     @wiki.assign_attributes(wiki_params)
-    authorize @wiki
+
 
     if @wiki.save
       flash[:notice] = "Wiki was updated successfully"
@@ -44,7 +43,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = find_id
-    authorize @wiki
+  
 
     if @wiki.destroy
       flash[:notice] ="\"#{@wiki.title}\" was deleted"
