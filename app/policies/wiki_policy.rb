@@ -11,7 +11,7 @@ class WikiPolicy < ApplicationPolicy
       elsif user && user.premium?
          all_wikis = scope.all
          all_wikis.each do |w|
-          if w.private? || w.user == user
+          if w.private? || w.user == user || w.collaborators.include?(user)
             wikis << w
           else
             wikis << w
@@ -22,6 +22,8 @@ class WikiPolicy < ApplicationPolicy
          wikis = []
          all_wikis.each do |w|
            unless w.private?
+             wikis << w
+           else w.collaborators.include?(user)
              wikis << w
          end
        end
