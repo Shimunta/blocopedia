@@ -43,7 +43,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = find_id
-  
+
 
     if @wiki.destroy
       flash[:notice] ="\"#{@wiki.title}\" was deleted"
