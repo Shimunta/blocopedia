@@ -50,3 +50,9 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-danger", method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<div class="row">
+  <ul>
+    <li><%= wikis_collaborated_on %></li>
+  </ul>
+</div>
